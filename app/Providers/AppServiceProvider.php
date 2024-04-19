@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-
+use Yajra\DataTables\Html\Builder;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::directive('active', function ($route) {
+            return "<?php echo request()->routeIs($route) ? 'active':'' ?>";
+        });
+        Builder::useVite();
     }
 }
