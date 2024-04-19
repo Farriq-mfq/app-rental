@@ -1,5 +1,5 @@
 <div>
-    <form onsubmit="return confirm('yakin ingin menghapus data ini ?')" method="POST" action="{{ route('users.delete', ['id' => $id]) }}">
+    <form onsubmit="return confirm('yakin ingin menghapus data ini ?')" method="POST" action="{{ route('users.destroy', ['user' => $id]) }}">
         @csrf
         @method('DELETE')
         <button class="btn btn-danger">

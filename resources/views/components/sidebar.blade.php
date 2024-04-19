@@ -55,17 +55,22 @@
                         <span>Pengguna</span>
                     </a>
                 </li>
+                <li class="sidebar-item @active('cars.index')">
+                    <a href="{{ route('cars.index') }}" class='sidebar-link'>
+                        <i class="bi bi-car-front"></i>
+                        <span>Manajemen Mobil</span>
+                    </a>
+                </li>
 
                 {{-- <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-person"></i>
-                        <span>Pengguna</span>
+                        <i class="bi bi-car-front"></i>
+                        <span>Manage Mobil</span>
                     </a>
 
                     <ul class="submenu">
                         <li class="submenu-item">
                             <a href="component-accordion.html" class="submenu-link">Accordion</a>
-
                         </li>
 
                         <li class="submenu-item">

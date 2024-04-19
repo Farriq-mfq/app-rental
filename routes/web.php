@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
-Route::prefix("users")->group(function () {
-    Route::get("/", [UserController::class, 'index'])->name('users.index');
-    Route::delete("/{id}", [UserController::class, 'destroy'])->name('users.delete');
-});
+Route::resource('users', UserController::class);
+Route::resource('cars', CarsController::class);

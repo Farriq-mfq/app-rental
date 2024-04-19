@@ -1,6 +1,6 @@
 @extends('templates.main')
 @section('title')
-    Users
+    Mobil
 @endsection
 @section('breadcrumbs')
     <div class="col-12 col-md-6 order-md-2 order-first">
@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Users
+                    Mobil
                 </li>
             </ol>
         </nav>
@@ -16,7 +16,14 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header">Manajemen Users</div>
+        <div class="card-header">Manajemen Mobil
+            <a href="{{ route('cars.create') }}" class="btn btn-primary ms-2 btn-sm">
+                <i class="bi bi-plus"></i>
+                Tambah Mobil</a>
+            <div class="mt-2">
+                <x-alert></x-alert>
+            </div>
+        </div>
         <div class="card-body">
             {{ $dataTable->table() }}
         </div>
