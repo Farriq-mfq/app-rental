@@ -26,7 +26,7 @@ class CarsRequest extends FormRequest
             'model' => 'required',
             'n_plat' => 'required',
             'tarif' => 'required|numeric',
-            'foto' => 'required|image|mimes:png,jpg'
+            'foto' => request()->routeIs('cars.update') ? '' : 'required|image|mimes:png,jpg'
         ];
     }
 }

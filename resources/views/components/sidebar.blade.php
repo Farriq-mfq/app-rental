@@ -55,7 +55,7 @@
                         <span>Pengguna</span>
                     </a>
                 </li>
-                <li class="sidebar-item @active('cars.index')">
+                <li class="sidebar-item @activeHasChild('cars')">
                     <a href="{{ route('cars.index') }}" class='sidebar-link'>
                         <i class="bi bi-car-front"></i>
                         <span>Manajemen Mobil</span>

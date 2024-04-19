@@ -65,15 +65,38 @@ class CarsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $car = $this->car->find($id);
+        return view('cars.edit', compact('car'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CarsRequest $request, string $id)
     {
-        //
+        $car = $this->car->find($id);
+        $foto = $request->foto;
+        $data = [
+            'merk' => $request->merk,
+            'model' => $request->model,
+            'n_plat' => $request->n_plat,
+            'stok' => $request->stok,
+            'tarif' => $request->tarif,
+        ];
+        if ($foto) {
+            $imageName = time() . '.' . $foto->extension();
+            $data['foto'] = $imageName;
+        }
+        $update = $car->update($data);
+        if ($update) {
+            if ($foto) {
+                Storage::delete('public/images/' . $car->foto);
+                $foto->storeAs('/public/images', $imageName);
+            }
+            return to_route('cars.index')->with('alert', ['message' => 'Berhasil update mobil', 'type' => 'success']);
+        } else {
+            return back()->with('alert', ['message' => 'Gagal update mobil', 'type' => 'danger']);
+        }
     }
 
     /**
