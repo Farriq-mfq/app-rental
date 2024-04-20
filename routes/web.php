@@ -3,6 +3,7 @@
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RentController;
+use App\Http\Controllers\ReturnRentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,4 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('users', UserController::class);
 Route::resource('cars', CarsController::class);
 Route::resource('rents', RentController::class);
+Route::resource('return-rents', ReturnRentController::class);

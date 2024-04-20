@@ -42,7 +42,7 @@ class RentController extends Controller
             return to_route('rents.index')->with('alert', ['message' => 'Stok Mobil ' . $car->merk . ' tidak mencukupi untuk melakukan peminjaman', 'type' => 'danger'])->withInput();
         }
         $rent = $this->rent->create([
-            'kode' => $request->kode,
+            'kode' => uniqid(),
             'nama' => $request->nama,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
@@ -90,8 +90,10 @@ class RentController extends Controller
             return to_route('rents.index');
         }
 
+        if (!($rent->car->stok > 0)) {
+            return back()->with('alert', ['message' => 'Stok Mobil ' . $rent->car->merk . ' tidak mencukupi untuk melakukan peminjaman', 'type' => 'danger'])->withInput();
+        }
         $update = tap(Rent::where('id', $id))->update([
-            'kode' => $request->kode,
             'nama' => $request->nama,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,

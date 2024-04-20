@@ -57,22 +57,6 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="kode" class="mb-2">Kode Plat Mobil</label>
-                                    <input type="text" id="kode"
-                                        class="form-control  @error('kode') is-invalid @enderror" name="kode"
-                                        value="{{ old('kode') }}">
-                                    @error('kode')
-                                        <div class="invalid-feedback">
-                                            <i class="bx bx-radio-circle"></i>
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
                                     <label for="ktp" class="mb-2">No KTP</label>
                                     <input type="text" id="ktp"
                                         class="form-control  @error('ktp') is-invalid @enderror" name="ktp"
