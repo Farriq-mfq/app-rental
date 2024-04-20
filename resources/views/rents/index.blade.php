@@ -57,6 +57,22 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
+                                    <label for="kode" class="mb-2">Kode Plat Mobil</label>
+                                    <input type="text" id="kode"
+                                        class="form-control  @error('kode') is-invalid @enderror" name="kode"
+                                        value="{{ old('kode') }}">
+                                    @error('kode')
+                                        <div class="invalid-feedback">
+                                            <i class="bx bx-radio-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
                                     <label for="ktp" class="mb-2">No KTP</label>
                                     <input type="text" id="ktp"
                                         class="form-control  @error('ktp') is-invalid @enderror" name="ktp"
@@ -92,9 +108,11 @@
                                 <div class="form-group">
                                     <label for="mobil" class="mb-2">Pilih Mobil</label>
                                     <select class="choices form-select @error('mobil') is-invalid @enderror" name="mobil">
-                                        <option selected>--Pilih Mobil--</option>
+                                        @if (empty(old('mobil')))
+                                            <option selected>--Pilih Mobil--</option>
+                                        @endif
                                         @foreach ($cars as $car)
-                                            <option value="{{ $car->id }}">
+                                            <option @selected(!empty(old('mobil')) && old('mobil') === $car->id) value="{{ $car->id }}">
                                                 {{ $car->merk }} - {{ $car->model }}
                                                 (Rp.{{ number_format($car->tarif) }})
                                             </option>

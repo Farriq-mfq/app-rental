@@ -37,8 +37,12 @@ class RentController extends Controller
      */
     public function store(RentRequest $request)
     {
+        $car = $this->car->find($request->mobil);
+        if (!($car->stok > 0)) {
+            return to_route('rents.index')->with('alert', ['message' => 'Stok Mobil ' . $car->merk . ' tidak mencukupi untuk melakukan peminjaman', 'type' => 'danger'])->withInput();
+        }
         $rent = $this->rent->create([
-            'kode' => uniqid(),
+            'kode' => $request->kode,
             'nama' => $request->nama,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
@@ -87,7 +91,7 @@ class RentController extends Controller
         }
 
         $update = tap(Rent::where('id', $id))->update([
-            'kode' => uniqid(),
+            'kode' => $request->kode,
             'nama' => $request->nama,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
