@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function login_process(AuthRequest $authRequest)
     {
         $credentials = $authRequest->only(['email', 'password']);
-        $auth = Auth::attempt($credentials);
+        $auth = Auth::attempt(array_merge($credentials, ['role' => 'admin']));
         if ($auth) {
             return redirect()->intended(route('dashboard'));
         } else {

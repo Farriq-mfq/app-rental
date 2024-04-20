@@ -49,7 +49,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item @active('users.index')">
+                <li class="sidebar-item @activeHasChild('users')">
                     <a href="{{ route('users.index') }}" class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span>Pengguna</span>

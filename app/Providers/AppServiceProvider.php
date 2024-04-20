@@ -24,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('active', function ($route) {
             return "<?php echo request()->routeIs($route) ? 'active':'' ?>";
         });
+        Blade::directive('admin', function ($route) {
+            return "<?php echo user()->role === 'admin' ? 'active':'' ?>";
+        });
         Blade::directive('activeHasChild', function ($route) {
             return "<?php echo request()->is($route.'*') ? 'active':'' ?>";
         });

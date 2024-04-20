@@ -24,9 +24,8 @@ class RentRequest extends FormRequest
         return [
             'mulai' => 'required|date',
             'selesai' => 'required|date',
-            'ktp' => 'required',
-            'nama' => 'required',
-            'mobil' => 'required'
+            'mobil' => 'required',
+            'peminjam' => 'required'
         ];
     }
 }

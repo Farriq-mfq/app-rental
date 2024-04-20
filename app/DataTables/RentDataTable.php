@@ -27,6 +27,12 @@ class RentDataTable extends DataTable
             ->addColumn('status', function ($row) {
                 return view('rents.status', compact('row'));
             })
+            ->addColumn('no_sim', function ($row) {
+                return $row->user->no_sim;
+            })
+            ->addColumn('nama', function ($row) {
+                return $row->user->nama;
+            })
             ->setRowId('id');
     }
 
@@ -65,7 +71,7 @@ class RentDataTable extends DataTable
         return [
             Column::make('kode'),
             Column::make('nama'),
-            Column::make('no_ktp'),
+            Column::make('no_sim'),
             Column::make('mulai'),
             Column::make('status'),
             Column::make('selesai'),

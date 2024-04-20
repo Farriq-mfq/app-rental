@@ -63,7 +63,7 @@ class ReturnRentController extends Controller
             }
 
         } else {
-            return to_route('return-rents.index')->withErrors(['kode' => 'Kode tidak valid']);
+            return to_route('return-rents.index')->withErrors(['kode' => 'Kode tidak valid'])->withInput();
         }
     }
 

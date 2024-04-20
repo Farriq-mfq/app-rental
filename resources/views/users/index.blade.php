@@ -16,7 +16,13 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header">Manajemen Users</div>
+        <div class="card-header">Manajemen Users <a href="{{ route('users.create') }}" class="btn btn-primary ms-2 btn-sm">
+                <i class="bi bi-plus"></i>
+                Tambah Pengguna</a>
+            <div class="mt-2">
+                <x-alert></x-alert>
+            </div>
+        </div>
         <div class="card-body">
             {{ $dataTable->table() }}
         </div>

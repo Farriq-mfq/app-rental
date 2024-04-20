@@ -16,7 +16,7 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header">Manajemen Mobil
+        <div class="card-header">Manajemen Pengembalian
             <div class="mt-2">
                 <x-alert></x-alert>
             </div>

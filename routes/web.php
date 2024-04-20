@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
     Route::post('login', [AuthController::class, 'login_process'])->name('auth.login.process');
-    Route::get('register', [AuthController::class, 'register'])->name('register');
-    Route::post('register', [AuthController::class, 'register_process'])->name('auth.register.process');
+    // Route::get('register', [AuthController::class, 'register'])->name('register');
+    // Route::post('register', [AuthController::class, 'register_process'])->name('auth.register.process');
 });

@@ -14,8 +14,6 @@ return new class extends Migration {
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
-            $table->string('nama');
-            $table->string('no_ktp');
             $table->date('mulai');
             $table->date('selesai');
             $table->foreignIdFor(Car::class)->constrained();

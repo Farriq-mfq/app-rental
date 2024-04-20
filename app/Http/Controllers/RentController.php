@@ -8,11 +8,12 @@ use App\Events\UpdateStok;
 use App\Http\Requests\RentRequest;
 use App\Models\Car;
 use App\Models\Rent;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RentController extends Controller
 {
-    public function __construct(private readonly Car $car, private readonly Rent $rent)
+    public function __construct(private readonly Car $car, private readonly User $user, private readonly Rent $rent)
     {
     }
     /**
@@ -21,7 +22,8 @@ class RentController extends Controller
     public function index(RentDataTable $dataTable)
     {
         $cars = $this->car->get();
-        return $dataTable->render('rents.index', compact('cars'));
+        $users = $this->user->where('role', 'user')->get();
+        return $dataTable->render('rents.index', compact('cars', 'users'));
     }
 
     /**
@@ -43,11 +45,10 @@ class RentController extends Controller
         }
         $rent = $this->rent->create([
             'kode' => uniqid(),
-            'nama' => $request->nama,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
-            'no_ktp' => $request->ktp,
             'car_id' => $request->mobil,
+            'user_id' => $request->peminjam
         ]);
 
         if ($rent) {
@@ -94,10 +95,9 @@ class RentController extends Controller
             return back()->with('alert', ['message' => 'Stok Mobil ' . $rent->car->merk . ' tidak mencukupi untuk melakukan peminjaman', 'type' => 'danger'])->withInput();
         }
         $update = tap(Rent::where('id', $id))->update([
-            'nama' => $request->nama,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
-            'no_ktp' => $request->ktp,
+            'user_id' => $request->peminjam,
             'car_id' => $request->mobil,
         ]);
         if ($update) {
