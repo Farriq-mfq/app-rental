@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
+Route::resource('users', UserController::class);
+Route::resource('cars', CarsController::class);
+Route::resource('rents', RentController::class);
