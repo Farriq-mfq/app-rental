@@ -20,8 +20,9 @@ class AuthController extends Controller
     }
     public function login_process(AuthRequest $authRequest)
     {
+        $remember = ($authRequest->has('remember')) ? true : false;
         $credentials = $authRequest->only(['email', 'password']);
-        $auth = Auth::attempt(array_merge($credentials, ['role' => 'admin']));
+        $auth = Auth::attempt(array_merge($credentials, ['role' => 'admin']), $remember);
         if ($auth) {
             return redirect()->intended(route('dashboard'));
         } else {

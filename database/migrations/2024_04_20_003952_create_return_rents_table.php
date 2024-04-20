@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('return_rents', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Rent::class)->constrained();
+            $table->foreignIdFor(Rent::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer('total_tarif');
             $table->integer('durasi');
             $table->timestamps();

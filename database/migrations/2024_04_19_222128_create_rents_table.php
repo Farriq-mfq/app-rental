@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('kode');
             $table->date('mulai');
             $table->date('selesai');
-            $table->foreignIdFor(Car::class)->constrained();
+            $table->foreignIdFor(Car::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

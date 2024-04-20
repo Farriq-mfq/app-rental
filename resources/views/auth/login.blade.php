@@ -6,7 +6,8 @@
     <form action="{{ route('auth.login.process') }}" method="POST">
         @csrf
         <div class="form-group position-relative has-icon-left mb-4">
-            <input type="email" class="form-control form-control-xl @error('email') is-invalid @enderror" placeholder="Email" name="email">
+            <input type="email" class="form-control form-control-xl @error('email') is-invalid @enderror" placeholder="Email"
+                name="email">
             <div class="form-control-icon">
                 <i class="bi bi-person"></i>
             </div>
@@ -18,7 +19,8 @@
             @enderror
         </div>
         <div class="form-group position-relative has-icon-left mb-4">
-            <input type="password" class="form-control form-control-xl @error('password') is-invalid @enderror" placeholder="Password" name="password">
+            <input type="password" class="form-control form-control-xl @error('password') is-invalid @enderror"
+                placeholder="Password" name="password">
             <div class="form-control-icon">
                 <i class="bi bi-shield-lock"></i>
             </div>
@@ -30,8 +32,8 @@
             @enderror
         </div>
         <div class="form-check form-check-lg d-flex align-items-end">
-            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label text-gray-600" for="flexCheckDefault">
+            <input class="form-check-input me-2" type="checkbox" value="" name="remember" id="remember-me">
+            <label class="form-check-label text-gray-600" for="remember-me">
                 Keep me logged in
             </label>
         </div>
