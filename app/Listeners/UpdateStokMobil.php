@@ -28,9 +28,11 @@ class UpdateStokMobil
                 'stok' => $currentStok + 1
             ]);
         } else if ($car->flow->flow() === 'down') {
-            $car->car->update([
-                'stok' => $currentStok - 1
-            ]);
+            if ($car->car->stok > 0) {
+                $car->car->update([
+                    'stok' => $currentStok - 1
+                ]);
+            }
         } else {
             throw new \Error("Invalid flow");
         }

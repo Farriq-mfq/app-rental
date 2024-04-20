@@ -92,9 +92,11 @@
                                 <div class="form-group">
                                     <label for="mobil" class="mb-2">Pilih Mobil</label>
                                     <select class="choices form-select @error('mobil') is-invalid @enderror" name="mobil">
-                                        <option selected>--Pilih Mobil--</option>
+                                        @if (empty(old('mobil')))
+                                            <option selected>--Pilih Mobil--</option>
+                                        @endif
                                         @foreach ($cars as $car)
-                                            <option value="{{ $car->id }}">
+                                            <option @selected(!empty(old('mobil')) && old('mobil') === $car->id) value="{{ $car->id }}">
                                                 {{ $car->merk }} - {{ $car->model }}
                                                 (Rp.{{ number_format($car->tarif) }})
                                             </option>

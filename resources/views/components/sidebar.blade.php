@@ -67,6 +67,12 @@
                         <span>Peminjaman</span>
                     </a>
                 </li>
+                <li class="sidebar-item @activeHasChild('return-rents')">
+                    <a href="{{ route('return-rents.index') }}" class='sidebar-link'>
+                        <i class="bi bi-arrow-return-left"></i>
+                        <span>Pengembalian</span>
+                    </a>
+                </li>
 
                 {{-- <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>

@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class RentDataTable extends DataTable
@@ -25,6 +23,9 @@ class RentDataTable extends DataTable
             ->addColumn('action', 'rents.action')
             ->addColumn('mobil', function ($row) {
                 return $row->car->merk . ' (' . $row->car->model . ') ' . 'Rp.' . number_format($row->car->tarif);
+            })
+            ->addColumn('status', function ($row) {
+                return view('rents.status', compact('row'));
             })
             ->setRowId('id');
     }
@@ -66,6 +67,7 @@ class RentDataTable extends DataTable
             Column::make('nama'),
             Column::make('no_ktp'),
             Column::make('mulai'),
+            Column::make('status'),
             Column::make('selesai'),
             Column::computed('mobil'),
             Column::computed('action')
