@@ -57,44 +57,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="ktp" class="mb-2">No KTP</label>
-                                    <input type="text" id="ktp"
-                                        class="form-control  @error('ktp') is-invalid @enderror" name="ktp"
-                                        value="{{ old('ktp') }}">
-                                    @error('ktp')
-                                        <div class="invalid-feedback">
-                                            <i class="bx bx-radio-circle"></i>
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="nama" class="mb-2">Nama Peminjam</label>
-                                    <input type="text" id="nama"
-                                        class="form-control  @error('nama') is-invalid @enderror" name="nama"
-                                        value="{{ old('nama') }}">
-                                    @error('nama')
-                                        <div class="invalid-feedback">
-                                            <i class="bx bx-radio-circle"></i>
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
                                     <label for="mobil" class="mb-2">Pilih Mobil</label>
-                                    <select class="choices form-select @error('mobil') is-invalid @enderror" name="mobil">
-                                        @if (empty(old('mobil')))
-                                            <option selected>--Pilih Mobil--</option>
-                                        @endif
+                                    <select class="choices form-select " name="mobil">
+                                        <option value="" @selected(empty(old('mobil')))>--Pilih Mobil--</option>
                                         @foreach ($cars as $car)
                                             <option @selected(!empty(old('mobil')) && old('mobil') === $car->id) value="{{ $car->id }}">
                                                 {{ $car->merk }} - {{ $car->model }}
@@ -103,7 +68,29 @@
                                         @endforeach
                                     </select>
                                     @error('mobil')
-                                        <div class="invalid-feedback">
+                                        <div class="text-danger">
+
+                                            <i class="bx bx-radio-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="peminjam" class="mb-2">Pilih Peminjam</label>
+                                    <select class="choices form-select" name="peminjam">
+                                        <option value="" @selected(empty(old('peminjam')))>--Pilih peminjam--</option>
+                                        @foreach ($users as $user)
+                                            <option @selected(!empty(old('peminjam')) && old('peminjam') === $user->id) value="{{ $user->id }}">
+                                                {{ $user->nama }} - {{ $user->no_sim }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('peminjam')
+                                        <div class="text-danger">
                                             <i class="bx bx-radio-circle"></i>
                                             {{ $message }}
                                         </div>

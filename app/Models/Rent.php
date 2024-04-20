@@ -16,12 +16,17 @@ class Rent extends Model
         'mulai',
         'no_ktp',
         'selesai',
-        'car_id'
+        'car_id',
+        'user_id'
     ];
 
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
     public function returnRent(): HasOne
     {

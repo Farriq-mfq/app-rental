@@ -23,9 +23,9 @@ class AuthRegisterRequest extends FormRequest
     {
         return [
             'nama' => 'required',
-            'email' => 'required|unique:users,email',
-            'password' => 'required',
-            'confirmation_password' => 'required|same:password',
+            'email' => 'required|unique:users,email,' . $this->user,
+            'password' => request()->routeIs('users.update') ? '' : 'required',
+            'confirmation_password' => request()->routeIs('users.update') ? '' : 'required|same:password',
             'alamat' => 'required',
             'no_telp' => 'required',
             'no_sim' => 'required'

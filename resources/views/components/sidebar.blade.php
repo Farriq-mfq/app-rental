@@ -49,7 +49,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item @active('users.index')">
+                <li class="sidebar-item @activeHasChild('users')">
                     <a href="{{ route('users.index') }}" class='sidebar-link'>
                         <i class="bi bi-person"></i>
                         <span>Pengguna</span>
@@ -73,7 +73,14 @@
                         <span>Pengembalian</span>
                     </a>
                 </li>
-                <form action={{ route('logout') }} class="sidebar-item" style="cursor: pointer; width: 100%" method="POST">
+                <li class="sidebar-item">
+                    <a href="{{ route('gallery.index') }}" class='sidebar-link'>
+                        <i class="bi bi-image"></i>
+                        <span>Gallery</span>
+                    </a>
+                </li>
+                <form action={{ route('logout') }} class="sidebar-item" style="cursor: pointer; width: 100%"
+                    method="POST">
                     @csrf
                     <button class="btn btn-danger btn-block sidebar-link d-flex align-items-center text-white">
                         <i class="bi bi-door-open me-2 text-white"></i>

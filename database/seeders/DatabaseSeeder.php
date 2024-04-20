@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
         \App\Models\User::factory(10)->create();
-        \App\Models\Car::factory(10)->create();
+        // \App\Models\Car::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

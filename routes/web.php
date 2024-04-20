@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\ReturnRentController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
     Route::post('login', [AuthController::class, 'login_process'])->name('auth.login.process');
-    Route::get('register', [AuthController::class, 'register'])->name('register');
-    Route::post('register', [AuthController::class, 'register_process'])->name('auth.register.process');
+    // Route::get('register', [AuthController::class, 'register'])->name('register');
+    // Route::post('register', [AuthController::class, 'register_process'])->name('auth.register.process');
 });
+
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
