@@ -61,6 +61,12 @@
                         <span>Manajemen Mobil</span>
                     </a>
                 </li>
+                <li class="sidebar-item @activeHasChild('rents')">
+                    <a href="{{ route('rents.index') }}" class='sidebar-link'>
+                        <i class="bi bi-book"></i>
+                        <span>Peminjaman</span>
+                    </a>
+                </li>
 
                 {{-- <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>

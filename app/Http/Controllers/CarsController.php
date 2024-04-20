@@ -66,7 +66,11 @@ class CarsController extends Controller
     public function edit(string $id)
     {
         $car = $this->car->find($id);
-        return view('cars.edit', compact('car'));
+        if ($car) {
+            return view('cars.edit', compact('car'));
+        } else {
+            return to_route('cars.index');
+        }
     }
 
     /**
@@ -75,6 +79,9 @@ class CarsController extends Controller
     public function update(CarsRequest $request, string $id)
     {
         $car = $this->car->find($id);
+        if (!$car) {
+            return to_route('cars.index');
+        }
         $foto = $request->foto;
         $data = [
             'merk' => $request->merk,
@@ -104,8 +111,12 @@ class CarsController extends Controller
      */
     public function destroy(string $id)
     {
-        $mobil = $this->car->find($id);
-        $del = Storage::delete('public/images/' . $mobil->foto);
+        $car = $this->car->find($id);
+        if (!$car) {
+            return to_route('cars.index');
+        }
+
+        $del = Storage::delete('public/images/' . $car->foto);
         if ($del) {
             $this->car->where('id', $id)->delete();
             return to_route('cars.index')->with('alert', ['message' => 'Berhasil hapus data mobil', 'type' => 'success']);
