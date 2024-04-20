@@ -73,24 +73,14 @@
                         <span>Pengembalian</span>
                     </a>
                 </li>
+                <form action={{ route('logout') }} class="sidebar-item" style="cursor: pointer; width: 100%" method="POST">
+                    @csrf
+                    <button class="btn btn-danger btn-block sidebar-link d-flex align-items-center text-white">
+                        <i class="bi bi-door-open me-2 text-white"></i>
+                        Sign out
+                    </button>
+                </form>
 
-                {{-- <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-car-front"></i>
-                        <span>Manage Mobil</span>
-                    </a>
-
-                    <ul class="submenu">
-                        <li class="submenu-item">
-                            <a href="component-accordion.html" class="submenu-link">Accordion</a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="component-alert.html" class="submenu-link">Alert</a>
-
-                        </li>
-                    </ul>
-                </li> --}}
             </ul>
         </div>
     </div>

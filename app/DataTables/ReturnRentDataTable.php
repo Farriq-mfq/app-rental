@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\ReturnRent;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class ReturnRentDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,9 +22,21 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'users.action')
-            ->addColumn('(#) SIM', function ($row) {
-                return $row->no_sim;
+            ->addColumn('action', 'returns.action')
+            ->addColumn('total_tarif', function ($row) {
+                return "Rp." . number_format($row->total_tarif);
+            })
+            ->addColumn('durasi', function ($row) {
+                return $row->durasi . ' Hari';
+            })
+            ->addColumn('tanggal_kembali', function ($row) {
+                return $row->created_at;
+            })
+            ->addColumn('Status pengembalian', function ($row) {
+                return view('returns.status', compact('row'));
+            })
+            ->addColumn('mobil', function ($row) {
+                return $row->rent->car->merk . ' (' . $row->rent->car->model . ') ' . 'Rp.' . number_format($row->rent->car->tarif);
             })
             ->setRowId('id');
     }
@@ -32,9 +44,9 @@ class UsersDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(ReturnRent $model): QueryBuilder
     {
-        return $model->where('role', 'user')->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -43,7 +55,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('users-table')
+            ->setTableId('returnrent-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->buttons([
@@ -62,18 +74,16 @@ class UsersDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('nama'),
-            Column::make('alamat'),
-            Column::make('telp'),
-            Column::computed('(#) SIM'),
+            Column::make('total_tarif'),
+            Column::make('durasi'),
+            Column::make('mobil'),
+            Column::make('tanggal_kembali'),
+            Column::make('Status pengembalian'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-            // Column::make('add your columns'),
-            // Column::make('created_at'),
-            // Column::make('updated_at'),
         ];
     }
 
@@ -82,6 +92,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'ReturnRent_' . date('YmdHis');
     }
 }
